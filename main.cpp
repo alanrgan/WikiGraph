@@ -1,4 +1,5 @@
 #include <string>
+#include <typeinfo>
 
 #include "avltree.h"
 #include "graph.h"
@@ -25,13 +26,18 @@ int main() {
 	Graph<int> g(cmp);
 	g.insert(5, 10);
 	g.insert(5, 12);
+	g.insert(7, 10);
 
 	// following code prints all children of '5'
-	auto node = g.find(5);
+	/*auto node = g.find(5);
 	if(node != g.end()) {
 		for(auto it = (*node).begin(); it != (*node).end(); it++) {
 			cout << *it << endl;
 		}
+	}*/
+
+	for(auto it = g.begin(); it != g.end(); it++) {
+		cout << it.key() << endl;
 	}
 
 	Graph<int>::node_iterator n = g.find(10);

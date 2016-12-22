@@ -19,7 +19,7 @@ using namespace std;
 template <class K, class V>
 class AVLTree
 {
-
+    friend class inorder_iterator<K, V>;
  /* Comparator: returns 1 if a > b, 0 of a == b, and -1 if a < b */
  typedef int (*comparator)(const K &a, const K &b);
  public:

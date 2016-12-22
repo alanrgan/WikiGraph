@@ -10,15 +10,18 @@
 
 using namespace std;
 
+template <class K, class V>
+class AVLTree;
+
 template <class K>
 class Graph
 {
+	friend class AVLTree<K, vector<K>>;
 /* Comparator: returns 1 if a > b, 0 of a == b, and -1 if a < b */
 typedef int (*comparator)(const K &a, const K &b);
 
 public:
 	typedef typename AVLTree<K, vector<K>>::iterator node_iterator;
-	
 	Graph(comparator);
 	Graph(const Graph &other);
 	~Graph();
@@ -33,6 +36,7 @@ public:
 	node_iterator find(const K &node);
 	node_iterator contains(const K &node);
 
+	node_iterator begin();
 	node_iterator end();
 
 private:

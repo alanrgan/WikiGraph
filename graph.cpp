@@ -58,6 +58,12 @@ typename Graph<K>::node_iterator Graph<K>::contains(const K &key)
 }
 
 template <class K>
+typename Graph<K>::node_iterator Graph<K>::begin()
+{
+	return data.begin();
+}
+
+template <class K>
 typename Graph<K>::node_iterator Graph<K>::end()
 {
 	return data.end();
