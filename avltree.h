@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
-#include "inorder_iterator.h"
+#include "graph_utils/inorder_iterator.h"
 
 template <class K, class V>
 class inorder_iterator;

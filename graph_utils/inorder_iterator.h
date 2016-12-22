@@ -2,7 +2,7 @@
 #define INORDER_ITERATOR_H
 
 #include <stdexcept>
-#include "avltree.h"
+#include "../avltree.h"
 
 using namespace std;
 

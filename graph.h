@@ -6,7 +6,7 @@
 #include <algorithm>
 
 #include "avltree.h"
-#include "inorder_iterator.h"
+#include "graph_utils/inorder_iterator.h"
 
 using namespace std;
 
@@ -15,9 +15,10 @@ class Graph
 {
 /* Comparator: returns 1 if a > b, 0 of a == b, and -1 if a < b */
 typedef int (*comparator)(const K &a, const K &b);
-typedef typename AVLTree<K, vector<K>>::iterator node_iterator;
 
 public:
+	typedef typename AVLTree<K, vector<K>>::iterator node_iterator;
+	
 	Graph(comparator);
 	Graph(const Graph &other);
 	~Graph();

@@ -14,6 +14,9 @@ void Graph<K>::addNode(const K &node)
 	data.insert(node, vector<K>());
 }
 
+/**
+* If a child is not already in graph, then it is automatically added
+*/
 template <class K>
 void Graph<K>::insert(const K &parent, const K &child)
 {
@@ -23,17 +26,17 @@ void Graph<K>::insert(const K &parent, const K &child)
 	}
 
 	node_iterator parentNode;
-	// if parent exists on the graph already
-	if((parentNode = data.find(parent)) != data.end()) {
-		// then add the child to the parent if the parent doesn't already have the child
-		if(child && !hasChild(*parentNode, child))
-			(*parentNode).push_back(child);
-	} else {
-		// otherwise add the parent to the graph
-		node_iterator node = data.insert(parent, vector<K>());
-		if(child && !hasChild(*parentNode, child))
-			(*node).push_back(child);
-	}
+	// if the parent doesn't exist in the graph already, add it
+	if((parentNode = data.find(parent)) == data.end())
+		parentNode = data.insert(parent, vector<K>());
+
+	// if child does not exist yet, then add
+	if(data.find(child) == data.end())
+		data.insert(child, vector<K>());
+
+	// add child to the children-vector of the parent node
+	if(child && !hasChild(*parentNode, child))
+		(*parentNode).push_back(child);
 }
 
 template <class K>
