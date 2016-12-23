@@ -33,7 +33,7 @@ public:
 	*/
 	void insert(const K &parent, const K &child);
 
-	node_iterator find(const K &node);
+	node_iterator find(const K &node) const;
 	node_iterator contains(const K &node);
 
 	node_iterator begin();

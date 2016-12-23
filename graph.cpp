@@ -35,7 +35,7 @@ void Graph<K>::insert(const K &parent, const K &child)
 		data.insert(child, vector<K>());
 
 	// add child to the children-vector of the parent node
-	if(child && !hasChild(*parentNode, child))
+	if(!hasChild(*parentNode, child))
 		(*parentNode).push_back(child);
 }
 
@@ -46,7 +46,7 @@ bool Graph<K>::hasChild(const vector<K> &childArray, const K &child)
 }
 
 template <class K>
-typename Graph<K>::node_iterator Graph<K>::find(const K &key)
+typename Graph<K>::node_iterator Graph<K>::find(const K &key) const
 {
 	return data.find(key);
 }

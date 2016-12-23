@@ -7,6 +7,16 @@
 
 using namespace std;
 
+/**
+* struct to hold article link metadata
+*/
+typedef struct {
+	// article name; possibly have it be a vector to include aliases?
+	string name;
+	// hardlink, i.e. /wiki/_____ <--
+	string hlink;
+} artlink_t;
+
 template <class T, class K>
 struct Pair {
 	T first;
@@ -25,7 +35,12 @@ typedef Pair<string, vector<string>> NodeChildPair;
 * @param pcdelim delimiter between parent node and children
 * @param ccdelim delimiter between children
 */
-NodeChildPair *parseLine(string &line, char pcdelim, char ccdelim);
+NodeChildPair *parseLine(char *line, char pcdelim, char ccdelim);
+
+bool operator==(const artlink_t& a, const artlink_t& b)
+{
+	return a.name == b.name && a.hlink == b.hlink;
+}
 
 #include "utils.cpp"
 #endif

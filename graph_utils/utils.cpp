@@ -1,20 +1,23 @@
 #include <string.h>
 #include <stdlib.h>
 
-NodeChildPair *parseLine(string &line, char pcdelim, char ccdelim)
+/**
+* For quick testing purposes only
+*/
+NodeChildPair *parseLine(char *line, char pcdelim, char ccdelim)
 {
 	stringstream children;
 
 	NodeChildPair *p = new NodeChildPair;
 	vector<string> strvec;
 	char *parent, *token;
-	char *cline = new char[line.length()+1];
-	strcpy(cline, line.c_str());
+	//char *cline = new char[line.length()+1];
+	//strcpy(cline, line.c_str());
 
 	char pcdel[2] = {pcdelim, '\0'};
 	char ccdel[2] = {ccdelim, '\0'};
 
-	parent = strtok(cline, pcdel);
+	parent = strtok(line, pcdel);
 	while((token = strtok(NULL, ccdel)))
 		strvec.push_back(token);
 
