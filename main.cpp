@@ -1,8 +1,11 @@
 #include <string>
 #include <typeinfo>
+#include <stdio.h>
+#include <unistd.h>
 
 #include "avltree.h"
 #include "graph.h"
+#include "graph_utils/utils.h"
 
 /**
 * struct to hold article link metadata
@@ -22,11 +25,30 @@ int artlink_cmp(const artlink_t &a, const artlink_t &b) {
 	return (a.hlink > b.hlink) ? 1 : (a.hlink == b.hlink) ? 0 : -1;
 }
 
-int main() {
-	Graph<int> g(cmp);
+int main(int argc, char **argv) {
+	string s = "hello|name,2,1";
+	NodeChildPair *p = parseLine(s, '|', ',');
+	for(auto str : p->second) {
+		cout << str << endl;
+	}
+	delete p;
+	/*if(argc == 2) {
+		char *fname = argv[1];
+		if(access(fname, F_OK) == 0) {
+			FILE *input_file = fopen(fname, "r");
+			cout << (int)fgetc(input_file) << endl;
+			fclose(input_file);
+		} else {
+			cout << "file does not exist" << endl;
+		}
+	} else {
+
+	}*/
+
+	/*Graph<int> g(cmp);
 	g.insert(5, 10);
 	g.insert(5, 12);
-	g.insert(7, 10);
+	g.insert(7, 10);*/
 
 	// following code prints all children of '5'
 	/*auto node = g.find(5);
@@ -36,7 +58,7 @@ int main() {
 		}
 	}*/
 
-	for(auto it = g.begin(); it != g.end(); it++) {
+	/*for(auto it = g.begin(); it != g.end(); it++) {
 		cout << it.key() << endl;
 	}
 
@@ -45,6 +67,6 @@ int main() {
 		cout << n.key() << endl;
 	}
 
-	Graph<artlink_t> linkGraph(artlink_cmp);
+	Graph<artlink_t> linkGraph(artlink_cmp);*/
 	return 0;
 }
