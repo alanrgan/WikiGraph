@@ -1,3 +1,5 @@
 .objs
 wikigraph
 *.test
+*~
+*#
