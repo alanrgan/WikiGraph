@@ -10,5 +10,8 @@ download_page: download_page.c
 https: https_test.c
 	$(CC) https_test.c $(CFLAGS) /usr/local/include -lcurl -o https_test
 
+html_parser: parse_test.c
+	$(CC) parse_test.c $(CFLAGS) /usr/local/include -lxml2 -o parse_test
+
 clean:
 	rm -f xml_parser	
