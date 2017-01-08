@@ -11,8 +11,12 @@ int main(int argc, char *argv[])
 	if(parser != NULL)
 		printf("YYEAYYYYYYY\n");
 
-	int success = htmlParseDocument(parser);
-	printf("%d \n", success);
+	htmlDocPtr doc_ptr = htmlParseFile(fileName, "xml");
+
+	if(doc_ptr != NULL) 
+	{
+		printf("HEYAYAYAYAYAAYA. WHATS GOING ON /n");
+	}
 
 	htmlFreeParserCtxt(parser);
 	return 0;

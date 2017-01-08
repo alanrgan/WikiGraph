@@ -1,31 +1,65 @@
-#include <curl/curl.h>
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <libxml/xmlmemory.h>
+#include <libxml/parser.h>
 
-int main()
+void parseDoc(char *docname);
+
+int main(int argc, char **argv)
 {
-	CURL *curl;
-	CURLcode res;
-
-	curl_global_init(CURL_GLOBAL_DEFAULT);
-
-	curl = curl_easy_init();
-	if(curl)
-	{
-		curl_easy_setopt(curl, CURLOPT_URL, 
-			"https://en.wikipedia.org/wiki/University_of_Illinois_at_Urbana-Champaign");
-
-		// the following line tells to follow the redirect
-		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-
-		res = curl_easy_perform(curl);
-
-		/* Check for errors */ 
-    	if(res != CURLE_OK)
-      		fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
- 
-    	/* always cleanup */ 
-    	curl_easy_cleanup(curl);	
+	char *docname;
+		
+	if (argc <= 1) {
+		printf("Usage: %s docname\n", argv[0]);
+		return(0);
 	}
-	curl_global_cleanup();
-	return 0;
+
+	docname = argv[1];
+	parseDoc (docname);
+
+	return 1;
+}
+
+void parseDoc(char *docname)
+{
+	xmlDocPtr doc;
+	xmlNodePtr cur;
+
+	doc = xmlParseFile(docname);
+	
+	if (doc == NULL ) 
+	{
+		fprintf(stderr,"Document not parsed successfully. \n");
+		return;
+	}
+	
+	cur = xmlDocGetRootElement(doc);
+	
+	if (cur == NULL) 
+	{
+		fprintf(stderr,"empty document\n");
+		xmlFreeDoc(doc);
+		return;
+	}
+	
+	// if (xmlStrcmp(cur->name, (const xmlChar *) "story")) {
+	// 	fprintf(stderr,"document of the wrong type, root node != story");
+	// 	xmlFreeDoc(doc);
+	// 	return;
+	// }
+	
+	// cur = cur->xmlChildrenNode;
+	// while (cur != NULL)
+	// {
+	// 	if ((!xmlStrcmp(cur->name, (const xmlChar *)"storyinfo")))
+	// 	{
+	// 		parseStory (doc, cur);
+	// 	}
+		 
+	// cur = cur->next;
+	// }
+	
+	xmlFreeDoc(doc);
+	return;
 }

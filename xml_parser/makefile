@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-I
 
 xml_parser: xml_parser.c
-	$(CC) xml_parser.c $(CFLAGS) /usr/local/include -lcurl -o xml_parser
+	$(CC) xml_parser.c $(CFLAGS) /usr/local/include -lxml2 -o xml_parser
 
 download_page: download_page.c
 	$(CC) download_page.c $(CFLAGS) /usr/local/include -lcurl -o download_page
